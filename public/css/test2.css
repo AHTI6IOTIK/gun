@@ -1,0 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  float: left
+  margin-right: 15px;
+  
+}

@@ -1,0 +1,59 @@
+{% include 'header.html' %}
+<h1>Control {{ content_data.name }}</h1>
+<form method="POST">
+  <table>
+    <thead>
+      {% for field in content_data.fields %}
+      <th>
+        {{ field.Field }}
+      </th>
+
+      {% endfor %}
+    </thead>
+
+    {% for item  in content_data.items %}
+    <tr>
+      <td style='text-align: center; width: 20px;'>
+        <span>{{ item.id }}</span>
+      </td>
+      <td>
+        <input type="text" name="{{ item.id }}" value="{{ item.name }}" {% if k == "id" %}DISABLED{% endif %}>
+      </td>      
+
+      <td>
+        <input type="radio" name="status_{{ item.id }}" value="0" {% if item.status == 0 %}checked="checked"{% endif %}>Удалить
+        <input type="radio" name="status_{{ item.id }}" value="1" {% if item.status == 1 %}checked="checked"{% endif %}>Активна
+        <input type="radio" name="status_{{ item.id }}" value="2" {% if item.status == 2 %}checked="checked"{% endif %}>Не активна
+
+      </td>
+      <td>
+        <input type="text" name="url_{{ item.id }}" value="{{ item.url }}" {% if k == "id" %}DISABLED{% endif %}>
+      </td> 
+      <td>
+        <input type="submit" name="__save_{{ item.id }}" value="Сохранить">
+        <input type="submit" name="__delete_{{ item.id }}" value="Удалить">
+      </td>
+    </tr>
+    {% endfor %}
+
+    <tr colspan="{{ content_data.fields|length }}">
+      <td>Новая запись</td>
+      <td>url</td>
+    </tr>
+    <tr>
+
+      <td>
+        <input type="text" name="new__" {% if key == "id" %}DISABLED{% endif %} >
+      </td>
+      <td>
+        <input type="text" name="url__" {% if key == "id" %}DISABLED{% endif %} >
+      </td>
+
+      <td>
+        <input type="submit" name="__create" value="Создать">
+      </td>
+    </tr>
+  </table>
+</form>
+
+{% include 'footer.html' %}

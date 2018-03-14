@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ title }}</title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <script type="text/javascript" src="/js/category.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+<body>
+  <ul class="menu">
+    {% for item in menu_item %}
+    <li><a href="{{item.url}}">{{item.name}}</a></li>
+    {% endfor %}
+  </ul>
